@@ -123,18 +123,14 @@ const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   checkBox.onchange = checkBoxEventHandler;
 };
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
-for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
-  //bind events to list items chldren(tasksCompleted)
-  bindTaskEvents(incompleteTaskHolder.children[i], moveTaskByCheckbox);
-}
+const bindTasksInList = function (list) {
+  for (const listItem of list.children) {
+    bindTaskEvents(listItem, moveTaskByCheckbox);
+  }
+};
 
-//cycle over completedTasksHolder ul list items
-for (let i = 0; i < completedTasksHolder.children.length; i++) {
-  //bind events to list items chldren(tasksIncompleted)
-  bindTaskEvents(completedTasksHolder.children[i], moveTaskByCheckbox);
-}
+bindTasksInList(incompleteTaskHolder);
+bindTasksInList(completedTasksHolder);
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
